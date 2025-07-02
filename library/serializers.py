@@ -41,7 +41,9 @@ class LoanSerializer(serializers.ModelSerializer):
     member_id = serializers.PrimaryKeyRelatedField(
         queryset=Member.objects.all(), source='member', write_only=True
     )
-
+    is_overdue = serializers.ReadOnlyField()
+    days_overdue = serializers.ReadOnlyField()
+    
     class Meta:
         model = Loan
-        fields = ['id', 'book', 'book_id', 'member', 'member_id', 'loan_date', 'return_date', 'is_returned']
+        fields = ['id', 'book', 'book_id', 'member', 'member_id', 'loan_date', 'return_date', 'is_returned', 'is_overdue', 'days_overdue']
